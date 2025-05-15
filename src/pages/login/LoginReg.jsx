@@ -1,6 +1,5 @@
 import React from "react";
-import Logo from "../components/common/Navbar/Logo";
-import LoginSection from "../components/features/LoginSection";
+import LoginSection from "../../components/features/LoginSection";
 
 const LoginReg = () => {
   return (
