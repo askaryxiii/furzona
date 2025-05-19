@@ -1,24 +1,29 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { userValidation } from "../../utils/yupValidation";
+import { loginValidation } from "../../utils/yupValidation";
 import InputField from "../comonUse/InputField";
 import RoundedPurpleButton from "../comonUse/RoundedPurpleButton";
-import { loginUser } from "../../services/api";
 import LinkText from "../comonUse/LinkText";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authLogin } from "../../../context/slices/login/loginSlice";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
-const LogRegForm = () => {
-  const navigate = useNavigate();
+const LoginFormComponent = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(userValidation),
+    resolver: yupResolver(loginValidation),
     defaultValues: { username: "", password: "" },
   });
-  const onSubmit = ({ username, password }) =>
-    loginUser(username, password, navigate);
+  const onSubmit = async ({ username, password }) => {
+    const resultAction = await dispatch(authLogin({ username, password }));
+    !authLogin.fulfilled.match(resultAction) &&
+      toast.error("Login failed. Please check your credentials");
+  };
 
   return (
     <form
@@ -38,8 +43,14 @@ const LogRegForm = () => {
         <LinkText dist={"/forgetPassword"} text={"Forgot your password?"} />
       </section>
       <RoundedPurpleButton type={"submit"} text={"Sign in"} />
+      <span className="flex gap-5">
+        Don't have an account?
+        <Link to={"/register"} className="text-blue-600">
+          Sign up now
+        </Link>
+      </span>
     </form>
   );
 };
 
-export default LogRegForm;
+export default LoginFormComponent;
