@@ -1,7 +1,7 @@
 import React from "react";
 import LoginSection from "../../components/features/LoginSection";
 
-const LoginReg = () => {
+const LoginForm = () => {
   return (
     <div className="flex justify-center items-center h-dvh">
       <LoginSection />
@@ -9,4 +9,4 @@ const LoginReg = () => {
   );
 };
 
-export default LoginReg;
+export default LoginForm;

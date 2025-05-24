@@ -13,7 +13,7 @@ const RegisterSection = () => {
           "Users registered can post a pet for adoption, and contact owners to adopt an pet, Make a differance and adopt needed pet"
         }
       />
-      <MainLoginTitle title={"Login to FURZONA"} />
+      <MainLoginTitle title={"JOIN FURZONA"} />
       <RegisterFormComponent />
     </div>
   );
