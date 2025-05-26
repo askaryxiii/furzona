@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { BeatLoader } from "react-spinners";
 
 const RoundedPurpleButton = ({ text, type }) => {
   return (

@@ -5,8 +5,9 @@ import { registerValidation } from "../../utils/yupValidation";
 import { authRegister } from "../../../context/slices/register/registerSlice";
 import InputField from "../comonUse/InputField";
 import RoundedPurpleButton from "../comonUse/RoundedPurpleButton";
-import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import TwoSepPhrases from "../comonUse/TwoSepPhrases";
+import { useNavigate } from "react-router-dom";
 
 const RegisterFormComponent = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const RegisterFormComponent = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-5 w-sm">
+      className="flex flex-col gap-5 w-xs md:w-sm">
       <section className="flex flex-col gap-3">
         <InputField
           {...register("username")}
@@ -57,12 +58,11 @@ const RegisterFormComponent = () => {
         />
       </section>
       <RoundedPurpleButton type={"submit"} text={"Sign up"} />
-      <span className="flex gap-5">
-        Already have an account?
-        <Link to={"/"} className="text-blue-600">
-          Login now
-        </Link>
-      </span>
+      <TwoSepPhrases
+        normalText={`Already have an account?`}
+        linkedText={`Login now`}
+        dist={"/"}
+      />
     </form>
   );
 };

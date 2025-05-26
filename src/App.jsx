@@ -1,15 +1,31 @@
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import ForgetPass from "./pages/login/ForgetPass";
-import { useSelector } from "react-redux";
-import RegisterForm from "./pages/register/RegisterForm";
-import LoginForm from "./pages/login/LoginForm";
+import { useDispatch, useSelector } from "react-redux";
+import MainForm from "./pages/form/MainForm";
+import { NavigationListener } from "./components/services/NavigationListener";
+import Loading from "./components/common/comonUse/Loading";
+import { useEffect } from "react";
+import {
+  startLoading,
+  stopLoading,
+} from "./context/slices/loading/loadingSlice";
 
 function App() {
   const userLogged = useSelector((state) => state.login.userLogged);
   const userRegistered = useSelector((state) => state.register.userRegistered);
+  const isLoading = useSelector((state) => state.loading.isLoading);
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(startLoading());
+    const timer = setTimeout(() => dispatch(stopLoading()), 800);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname, dispatch]);
 
   const PrivateRoute = () => {
     // Replace with your actual auth check
@@ -26,22 +42,33 @@ function App() {
   };
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route element={<PublicRoute />}>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/forgetPassword" element={<ForgetPass />} />
-      </Route>
+    <>
+      <Routes location={location} key={location.pathname}>
+        {/* Public Routes */}
+        <Route element={<PublicRoute />}>
+          <Route
+            path="/login"
+            element={isLoading ? <Loading /> : <MainForm login={true} />}
+          />
+          <Route
+            path="/register"
+            element={isLoading ? <Loading /> : <MainForm login={false} />}
+          />
+          <Route
+            path="/forgetPassword"
+            element={isLoading ? <Loading /> : <ForgetPass />}
+          />
+        </Route>
 
-      {/* Private Routes */}
-      <Route element={<PrivateRoute />}>
-        <Route path="/" element={<Home />} />
-      </Route>
+        {/* Private Routes */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={isLoading ? <Loading /> : <Home />} />
+        </Route>
 
-      {/* Error Route */}
-      <Route path="/*" element={<ErrorPage />} />
-    </Routes>
+        {/* Error Route */}
+        <Route path="/*" element={isLoading ? <Loading /> : <ErrorPage />} />
+      </Routes>
+    </>
   );
 }
 

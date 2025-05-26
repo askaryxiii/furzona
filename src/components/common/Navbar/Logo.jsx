@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
-const Logo = ({ width }) => {
+const Logo = memo(({ width }) => {
   return (
     <img
       src="/images/logo.webp"
@@ -8,6 +8,6 @@ const Logo = ({ width }) => {
       className={`min-w-${width}`}
     />
   );
-};
+});
 
 export default Logo;
