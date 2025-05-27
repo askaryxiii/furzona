@@ -4,7 +4,7 @@ import { loginValidation } from "../../utils/yupValidation";
 import InputField from "../comonUse/InputField";
 import RoundedPurpleButton from "../comonUse/RoundedPurpleButton";
 import LinkText from "../comonUse/LinkText";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authLogin } from "../../../context/slices/login/loginSlice";
 import { toast } from "react-toastify";
 import TwoSepPhrases from "../comonUse/TwoSepPhrases";

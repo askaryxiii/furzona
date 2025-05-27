@@ -1,7 +1,7 @@
-import React from "react";
+import { memo } from "react";
 
-const MainLoginTitle = ({ title }) => {
+const MainLoginTitle = memo(({ title }) => {
   return <span className="text-2xl font-semibold text-[#4a276b]">{title}</span>;
-};
+});
 
 export default MainLoginTitle;

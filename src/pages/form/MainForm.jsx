@@ -25,7 +25,7 @@ const MainForm = ({ login }) => {
               text={
                 "Users registered can post a pet for adoption, and contact owners to adopt an pet, Make a differance and adopt needed pet"
               }
-            />{" "}
+            />
             <MainLoginTitle title={"JOIN FURZONA"} />
             <RegisterFormComponent />
           </>

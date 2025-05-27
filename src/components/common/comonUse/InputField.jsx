@@ -1,5 +1,3 @@
-import React from "react";
-
 const InputField = ({ name, label, error, type = "text", ref, ...rest }) => {
   return (
     <div>

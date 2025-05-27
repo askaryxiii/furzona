@@ -1,6 +1,5 @@
 import { memo } from "react";
-import { BarLoader, BeatLoader, ScaleLoader } from "react-spinners";
-import Logo from "../Navbar/Logo";
+import { BarLoader } from "react-spinners";
 
 const Loading = memo(() => {
   return (

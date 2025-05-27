@@ -3,7 +3,6 @@ import axios from "axios";
 
 const initialState = {
   data: null,
-  loading: false,
   userRegistered: JSON.parse(localStorage.getItem("token")) ? true : false,
   error: false,
 };
@@ -33,17 +32,13 @@ export const registerSlice = createSlice({
   name: "register",
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(authRegister.pending, (state) => {
-      state.loading = true;
-    });
+    builder.addCase(authRegister.pending, (state) => {});
     builder.addCase(authRegister.fulfilled, (state, { payload }) => {
-      state.loading = false;
       state.data = payload;
       localStorage.setItem("token", JSON.stringify(payload.jwt));
       state.userRegistered = true;
     });
     builder.addCase(authRegister.rejected, (state) => {
-      state.loading = false;
       state.error = true;
     });
   },
