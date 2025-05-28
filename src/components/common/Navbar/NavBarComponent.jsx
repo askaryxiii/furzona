@@ -3,9 +3,15 @@ import { FaBars, FaInfoCircle } from "react-icons/fa";
 import ListItemWithIcon from "../comonUse/ListItemWithIcon";
 import { MdOutlinePets } from "react-icons/md";
 import { RiMapPinUserFill } from "react-icons/ri";
+import { RiHome9Fill } from "react-icons/ri";
 import { useState } from "react";
 
 const listItems = [
+  {
+    icon: <RiHome9Fill className="text-[#4a276b] text-lg" />,
+    title: "Home",
+    dist: "/",
+  },
   {
     icon: <FaInfoCircle className="text-[#4a276b]" />,
     title: "About Us",
@@ -54,7 +60,9 @@ const NavBarComponent = () => {
         </button>
       </div>
       <div
-        className={`${isExpanded ? "block" : "hidden"} md:hidden flex justify-center gap-10`}
+        className={`${
+          isExpanded ? "block" : "hidden"
+        } md:hidden flex justify-center gap-10`}
         id="navbarSupportedContent">
         {listItems.map(({ icon, title, dist }, index) => (
           <ListItemWithIcon icon={icon} title={title} key={index} dist={dist} />
