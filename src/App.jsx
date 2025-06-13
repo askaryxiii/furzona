@@ -38,27 +38,29 @@ function App() {
 
   return (
     <>
+      <NavBarComponent />
       <Suspense fallback={<Loading />}>
         <Routes>
           {/* Public Routes */}
-          <Route element={<PublicRoute />}>
+          {/* <Route element={<PublicRoute />}>
             <Route path="/login" element={<MainForm login={true} />} />
             <Route path="/register" element={<MainForm login={false} />} />
             <Route path="/forgetPassword" element={<ForgetPass />} />
-          </Route>
+          </Route> */}
 
           {/* Private Routes */}
-          <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/me" element={<MePage />} />
-            <Route path="/pets" element={<Pets />} />
-          </Route>
+          {/* <Route element={<PrivateRoute />}> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/me" element={<MePage />} />
+          <Route path="/pets" element={<Pets />} />
+          {/* </Route> */}
 
           {/* Error Route */}
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </Suspense>
+      <Footer />
     </>
   );
 }
