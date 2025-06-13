@@ -14,7 +14,7 @@ const listItems = [
   },
   {
     icon: <FaInfoCircle className="text-[#4a276b]" />,
-    title: "About Us",
+    title: "About",
     dist: "/about",
   },
   {

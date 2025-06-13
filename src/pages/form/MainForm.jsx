@@ -16,7 +16,7 @@ const MainForm = ({ login }) => {
                 "Users logging in can post a pet for adoption, and contact owners to adopt an pet, Make a differance and adopt needed pet"
               }
             />
-            <MainLoginTitle title={"Login to FURZONA"} />
+            <MainLoginTitle title={"Login to FURZONA"} size={"text-2xl"} />
             <LoginFormComponent />
           </>
         ) : (
@@ -26,7 +26,7 @@ const MainForm = ({ login }) => {
                 "Users registered can post a pet for adoption, and contact owners to adopt an pet, Make a differance and adopt needed pet"
               }
             />
-            <MainLoginTitle title={"JOIN FURZONA"} />
+            <MainLoginTitle title={"JOIN FURZONA"} size={"text-2xl"} />
             <RegisterFormComponent />
           </>
         )}

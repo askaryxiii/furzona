@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Loading from "./components/common/comonUse/Loading";
 import { lazy, Suspense } from "react";
 import NavBarComponent from "./components/common/Navbar/NavBarComponent";
+import Footer from "./components/common/Footer/Footer";
 
 function App() {
   const userLogged = useSelector((state) => state.login.userLogged);
@@ -17,10 +18,15 @@ function App() {
   const MePage = lazy(() => import("./pages/mePage/MePage"));
 
   const PrivateRoute = () => {
-    // Replace with your actual auth check
     const isAuthenticated = userLogged || userRegistered;
 
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+    return isAuthenticated ? (
+      <>
+        <NavBarComponent /> <Outlet /> <Footer />
+      </>
+    ) : (
+      <Navigate to="/login" replace />
+    );
   };
 
   const PublicRoute = () => {
@@ -32,7 +38,6 @@ function App() {
 
   return (
     <>
-      <NavBarComponent />
       <Suspense fallback={<Loading />}>
         <Routes>
           {/* Public Routes */}
