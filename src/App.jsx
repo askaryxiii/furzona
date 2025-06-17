@@ -30,7 +30,6 @@ function App() {
   };
 
   const PublicRoute = () => {
-    // Replace with your actual auth check
     const isAuthenticated = userLogged || userRegistered;
 
     return isAuthenticated ? <Navigate to="/" replace /> : <Outlet />;
@@ -41,14 +40,12 @@ function App() {
       <NavBarComponent />
       <Suspense fallback={<Loading />}>
         <Routes>
-          {/* Public Routes */}
           {/* <Route element={<PublicRoute />}>
             <Route path="/login" element={<MainForm login={true} />} />
             <Route path="/register" element={<MainForm login={false} />} />
             <Route path="/forgetPassword" element={<ForgetPass />} />
           </Route> */}
 
-          {/* Private Routes */}
           {/* <Route element={<PrivateRoute />}> */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -56,11 +53,9 @@ function App() {
           <Route path="/pets" element={<Pets />} />
           {/* </Route> */}
 
-          {/* Error Route */}
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </Suspense>
-      <Footer />
     </>
   );
 }

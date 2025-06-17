@@ -1,12 +1,30 @@
 import { memo } from "react";
 
+const heroImages = {
+  sm: "/images/hero-640.webp", // 640px wide
+  md: "/images/hero-1024.webp", // 1024px wide
+  lg: "/images/hero-1920.webp", // 1920px wide
+};
+
 const Hero = memo(({ height }) => {
   return (
     <div>
-      <img
-        src="https://images.pexels.com/photos/31519218/pexels-photo-31519218/free-photo-of-charming-cats-on-a-windowsill-indoors.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        className={`w-full object-cover object-center ${height}`}
-      />
+      <picture>
+        <source
+          srcSet={`${heroImages.sm} 640w, ${heroImages.md} 1024w, ${heroImages.lg} 1920w`}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px"
+          type="image/webp"
+        />
+        <img
+          src={heroImages.md}
+          className={`object-cover ${height}`}
+          alt="Furzona Hero Banner"
+          fetchPriority="high"
+          decoding="async"
+          width={1920}
+          height={1080}
+        />
+      </picture>
     </div>
   );
 });
